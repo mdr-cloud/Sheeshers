@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sheeshers</title>
+    <link rel="icon" type="image/x-icon" href="file/favicon.ico">
+    <style>
+        #constitution_button {
+            background-color: rgba(0, 0, 0, 0.55);
+            background-image: url("https://images.unsplash.com/photo-1590099543482-3b3d3083a474?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhd3xlbnwwfHwwfHw%3D&w=1000&q=80");
+            background-size: cover;
+            background-position: center bottom -100px;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-blend-mode: darken;
+            border-radius: 20px;
+            border-style: solid;
+            border-color: black;
+            width: 300px;
+            height: 300px;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        i = 0;
+        function pictureChange()
+         {
+         i % 2 === 0 ?document.getElementById("image").src="https://cdn.discordapp.com/attachments/930315219257921567/1034626203484684309/unknown.png" : document.getElementById("image").src="https://styles.redditmedia.com/t5_2i5aca/styles/communityIcon_0yfk6fdt3pn41.png";
+         i++;
+         }
+    </script>
+</head>
+<body style="background-color: lightgreen;text-align:center; background-image: url(file/upload/601191254654582807/sketchheads2.png); background-repeat: no-repeat; background-size: contain; background-attachment: fixed; background-position: top;" id="bodyid">
+    <h1>Welcome to Sheeshers</h1>
+    <br><br>
+    <a onclick="pictureChange()">
+        <img id="image"src="https://styles.redditmedia.com/t5_2i5aca/styles/communityIcon_0yfk6fdt3pn41.png">
+    </a>
+    
+    <br><br>
+    <a href="tel:5146519344">Call your local mail man</a>
+    
+    
+    <! -- Section for the personal page button -- >
+    <section>
+        <br><br><br>
+        <select id="user-select">
+            <option value="../">Page :</option>
+            <option value="489970041194807319">Manndon</option>
+            <option value="601191254654582807">Lucas</option>
+            <option value="969688906759045171">Enzo</option>
+            <option value="602900968430108682">Camel</option>
+            <option value="leopoldine">Leopoldine</option>   
+        </select>
+        <script>
+            function doPersonalLink() {
+                var selectValue = document.getElementById("user-select").value;
+                var link = window.location + "p/" + selectValue;
+                window.location.assign(link);
+            }
+        </script>
+        <input id="clickMe" type="button" value="Go" onclick="doPersonalLink();" />
+    </section>
+    
+    <br><br>
+    <style>
+    #onlineUsers {
+        width: 320px;
+        padding: 10px;
+        background-color: rgb(51 129 233);
+        border: 10px;
+        margin: 0;
+        border-radius: 15px;
+        display: inline-table;
+        
+    }
+    </style>
+    <div id="onlineUsers"><button onclick="toggleWidget()" style="border: none; background-color: transparent; padding: 10px,10px;"><p id="toggleWidgetText"><b>˅</b></p></button><p id="onlinemembers" style="text-align:left;"></p></div>
+    <script>
+        function Vars(datafile) {
+            var stuff = "<h3>" + datafile.name + "</h3>\n<h4>" + datafile.members.length + " Online members :</h4>\n<footer>\n<style>\n.imageUsers {\nborder-radius: 50%;\n}\n</style>\n";
+            for (var i = 0; i<datafile.members.length; i++) {
+                if (datafile.members[i].deaf != undefined) {
+                  stuff = stuff + "<img src=" + datafile.members[i].avatar_url + ' width=40 class="imageUsers"><img src="file/upload/601191254654582807/mic.png" width=20> ' + datafile.members[i].username + "\n<br>\n"
+                }
+                else {
+                  stuff = stuff + "<img src=" + datafile.members[i].avatar_url + ' width=40 class="imageUsers"> ' + datafile.members[i].username + "\n<br>\n"
+                }
+            };
+            if (datafile.instant_invite != null) {
+                stuff = stuff + "<a href=" + data.instant_invite + ">Invite to the server</a>\n"
+            };
+            stuff = stuff + "</footer>";
+            document.getElementById("onlinemembers").innerHTML = stuff
+        };
+
+        window.onload = (event) => {
+                fetch("https://discord.com/api/guilds/841392280027398195/widget.json")
+            .then((res) => {return res.json();})
+            .then((data) => datavar = data)
+            .then((datavar) => Vars(datavar));
+        };
+        j = 0;
+        function backgroundChange() {
+            j % 2 === 0 ?document.getElementById("bodyid").style.backgroundImage = "url(file/upload/601191254654582807/sketchheads.png)": document.getElementById("bodyid").style.backgroundImage = "url(file/upload/601191254654582807/sketchheads2.png)";
+            j++;
+        }
+        function toggleWidget() {
+            var hideWidget = document.getElementById("onlinemembers");
+            if (hideWidget.style.display === "none") {
+                hideWidget.style.display = "block";
+                document.getElementById("toggleWidgetText").innerHTML = '<b>˅</b>'
+            } else {
+                hideWidget.style.display = "none";
+                document.getElementById("toggleWidgetText").innerHTML = '<b>˄</b>'
+            };
+        }
+    </script>
+    <br><br>
+    <button onclick="backgroundChange()">Toggle background</button><br><br>
+    <a href="http://sheeshers.org/constitution"><div id="constitution_button"><h1 style="position: relative; bottom: -95px; color: white;">The Constitution</h1></div></a>
+</body>
+</html>
